@@ -1,0 +1,54 @@
+spring:
+  jackson:
+    time-zone: America/Sao_Paulo
+  main:
+    allow-bean-definition-overriding: true
+  data:
+    mongodb:
+      database: ${MONGO_DATABASE}
+      ssl:
+        enabled: true
+      uri: ${MONGO_URI}
+    cache:
+      type: redis
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+      password: ${REDIS_PASSWORD}
+      ssl:
+        enabled: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  config:
+    additional-location: file:./variables-local.properties
+    activate:
+      on-profile: homol
+  datasource:
+    url: ${POSTGRES_URL}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  kafka:
+    bootstrap-servers: localhost:9092
+springdoc:
+  api-docs:
+    path: /shapeup/api-docs
+  swagger-ui:
+    path: /shapeup/swagger-ui
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*."
+
+logging:
+  level:
+    root: info
